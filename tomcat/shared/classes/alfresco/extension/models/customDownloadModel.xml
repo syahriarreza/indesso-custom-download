@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Definition of new Model -->
+<model name="custdown:custdownModel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+    
+    <description>Model for Custom Download</description>
+    <author>Syahriar Reza Hudyarisandi</author>
+    <version>1.0</version>
+
+    <imports>
+        <!-- Import Alfresco Dictionary Definitions -->
+        <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d" />
+        <!-- Import Alfresco Content Domain Model Definitions -->
+        <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm" />
+    </imports>
+    
+    <namespaces>
+        <namespace uri="custdown-indesso.co.id" prefix="custdown"/>
+    </namespaces>
+
+    <constraints>
+        <constraint name="custdown:positionList" type="LIST">
+            <parameter name="allowedValues">
+                <list>
+                    <value>Center</value>
+                    <value>Top Left</value>
+                    <value>Top Right</value>
+                    <value>Top Center</value>
+                    <value>Bottom Left</value>
+                    <value>Bottom Right</value>
+                </list>
+            </parameter>
+        </constraint>
+    </constraints>
+
+    <aspects>
+        <!-- Apply this aspect to a folder which to show custom download watermark for the documents inside -->
+        <aspect name="custdown:showCustomDownloadWatermark">
+            <title>Custom Download Watermark</title>
+            <properties>
+                <!-- Image Watermark -->
+                <property name="custdown:imagePath">
+            		<title>Image Path</title>
+            		<type>d:text</type>
+                    <default>Data Dictionary/Watermark/uncontrolled-when-printed-rotate.png</default>
+            	</property>
+            	<property name="custdown:imagePosition">
+                    <title>Image Position</title>
+                    <type>d:text</type>
+                    <default>Center</default>
+                    <constraints>
+                        <constraint ref="custdown:positionList" />
+                    </constraints>
+                </property>
+                <property name="custdown:imagePositionX">
+            		<title>Image Position Add Coord X</title>
+            		<type>d:int</type>
+                    <default>0</default>
+            	</property>
+                <property name="custdown:imagePositionY">
+            		<title>Image Position Add Coord Y</title>
+            		<type>d:int</type>
+                    <default>0</default>
+            	</property>
+
+                <!-- Printed At -->
+                <property name="custdown:printedDateFontSize">
+            		<title>Printed Date Font Size</title>
+            		<type>d:int</type>
+                    <default>14</default>
+            	</property>
+                <property name="custdown:printedDatePosition">
+                    <title>Printed Date Position</title>
+                    <type>d:text</type>
+                    <default>Center</default>
+                    <constraints>
+                        <constraint ref="custdown:positionList" />
+                    </constraints>
+                </property>
+                <property name="custdown:printedDatePositionX">
+            		<title>Printed Date Position Add Coord X</title>
+            		<type>d:int</type>
+                    <default>0</default>
+            	</property>
+                <property name="custdown:printedDatePositionY">
+            		<title>Printed Date Position Add Coord Y</title>
+            		<type>d:int</type>
+                    <default>0</default>
+            	</property>
+            </properties>
+        </aspect>
+
+        <!-- Apply this aspect to a folder which to show custom download skip page for the documents inside -->
+        <aspect name="custdown:showCustomDownloadBtnSkipPage">
+            <title>Custom Download Skip Page</title>
+            <properties>
+            	<property name="custdown:skipUntilPage">
+            		<title>Skip Until Page</title>
+            		<type>d:int</type>
+                    <default>1</default>
+            	</property>
+            </properties>
+        </aspect>
+    </aspects>
+</model>

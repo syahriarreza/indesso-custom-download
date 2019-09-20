@@ -1,0 +1,8 @@
+<webscript kind="org.alfresco.repository.content.stream">
+    <shortname>Custom Download Watermark</shortname>
+    <description>Custom Download Watermark param is taken from aspect custdown:showCustomDownloadWatermark</description>
+    <url>/prosia/reza/customDownloadWatermark?nodeRef={nodeRef}</url>
+    <format default="">argument</format>
+    <authentication runas="admin">none</authentication>
+    <transaction>required</transaction>
+</webscript>

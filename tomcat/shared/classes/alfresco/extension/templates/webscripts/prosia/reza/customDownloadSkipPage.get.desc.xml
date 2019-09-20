@@ -1,0 +1,8 @@
+<webscript kind="org.alfresco.repository.content.stream">
+    <shortname>Custom Download Skip Page</shortname>
+    <description>Custom Download Skip Page param is taken from aspect custdown:showCustomDownloadBtnSkipPage</description>
+    <url>/prosia/reza/customDownloadSkipPage?nodeRef={nodeRef}</url>
+    <format default="">argument</format>
+    <authentication runas="admin">none</authentication>
+    <transaction>required</transaction>
+</webscript>

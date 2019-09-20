@@ -1,0 +1,14 @@
+<extension>
+    <modules>
+        <module>
+            <id>Hide Download Buttons</id>
+            <auto-deploy>true</auto-deploy>
+            <customizations>
+                <customization>
+                    <targetPackageRoot>org.alfresco</targetPackageRoot>
+                    <sourcePackageRoot>com.prosia.reza</sourcePackageRoot>
+                </customization>
+            </customizations>
+        </module>
+    </modules>
+</extension>

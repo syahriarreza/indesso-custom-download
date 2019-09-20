@@ -1,0 +1,114 @@
+<alfresco-config>
+
+    <!-- Display Custom Aspects -->
+    <config evaluator="string-compare" condition="DocumentLibrary">
+        <aspects>
+            <visible>
+                <aspect name="custdown:showCustomDownloadWatermark" />
+                <aspect name="custdown:showCustomDownloadBtnSkipPage" />
+            </visible>
+        </aspects>
+    </config>
+
+    <!-- Config Custom Action Buttons -->
+    <config evaluator="string-compare" condition="DocLibActions">
+        <actions>
+            <!-- Custom Download Watermark -->
+            <action id="custom-download-watermark" icon="document-download" type="link" label="Download">
+                <param name="href">http://localhost:8080/alfresco/s/prosia/reza/customDownloadWatermark?nodeRef={node.nodeRef}</param>
+                <param name="target">_blank</param>
+                <evaluator>com.prosia.reza.evaluator.doclib.action.isShowCustomDownloadWatermark</evaluator>
+            </action>
+            <!-- Custom Download Skip Page -->
+            <action id="custom-download-skip-page" icon="document-download" type="link" label="Download">
+                <param name="href">http://localhost:8080/alfresco/s/prosia/reza/customDownloadSkipPage?nodeRef={node.nodeRef}</param>
+                <param name="target">_blank</param>
+                <evaluator>com.prosia.reza.evaluator.doclib.action.isShowCustomDownloadSkipPage</evaluator>
+            </action>
+
+            <!-- OOTB Download document -->
+            <action id="document-download" type="link" label="actions.document.download">
+                <param name="href">{downloadUrl}</param>
+                <param name="target">_blank</param>
+                <evaluator>evaluator.doclib.action.downloadBrowser</evaluator>
+                <evaluator>evaluator.doclib.action.hasContent</evaluator>
+                <evaluator negate="true">com.prosia.reza.evaluator.doclib.action.isShowCustomDownloadWatermark</evaluator>
+                <evaluator negate="true">com.prosia.reza.evaluator.doclib.action.isShowCustomDownloadSkipPage</evaluator>
+            </action>
+
+            <!-- OOTB View document in browser -->
+            <action id="document-view-content" type="link" label="actions.document.view">
+                <param name="href">{viewUrl}</param>
+                <evaluator>evaluator.doclib.action.hasContent</evaluator>
+                <evaluator negate="true">com.prosia.reza.evaluator.doclib.action.isShowCustomDownloadWatermark</evaluator>
+                <evaluator negate="true">com.prosia.reza.evaluator.doclib.action.isShowCustomDownloadSkipPage</evaluator>
+            </action>
+        </actions>
+
+        <actionGroups>
+            <actionGroup id="document-browse">
+                <action index="90" id="custom-download-watermark"/>
+                <action index="91" id="custom-download-skip-page"/>
+            </actionGroup>
+            <actionGroup id="document-details">
+                <action index="90" id="custom-download-watermark"/>
+                <action index="91" id="custom-download-skip-page"/>
+                <action index="100" id="document-download" subgroup="10" appendEvaluators="true">
+                    <evaluator>evaluator.doclib.action.DocumentEnableInSmartFolder</evaluator>
+                </action>
+            </actionGroup>
+        </actionGroups>
+    </config>
+
+    <!-- ASPECT - Custom Download Watermark -->
+    <config evaluator="aspect" condition="custdown:showCustomDownloadWatermark">
+        <forms>
+            <form>
+                <field-visibility>
+                    <show id="custdown:imagePath" />
+                    <show id="custdown:imagePosition" />
+                    <show id="custdown:imagePositionX" />
+                    <show id="custdown:imagePositionY" />
+
+                    <show id="custdown:printedDateFontSize" />
+                    <show id="custdown:printedDatePosition" />
+                    <show id="custdown:printedDatePositionX" />
+                    <show id="custdown:printedDatePositionY" />
+                </field-visibility>
+                <appearance>
+                    <set id="imageWatermark" appearance="panel" label="Image Watermark"/>
+                    <set id="imageWatermarkSub" appearance="" label="Image Watermark" template="/org/alfresco/components/form/3-column-set.ftl"/>
+                    <set id="dateWatermark" appearance="panel" label="Date Watermark" template="/org/alfresco/components/form/2-column-set.ftl"/>
+                
+                    <field id="custdown:imagePath" label="Image Path" set="imageWatermark"/>
+
+                    <field id="custdown:imagePosition" label="Image Position" set="imageWatermarkSub"/>
+                    <field id="custdown:imagePositionX" label="Image Position Add Coord X" set="imageWatermarkSub"/>
+                    <field id="custdown:imagePositionY" label="Image Position Add Coord Y" set="imageWatermarkSub"/>
+
+                    <field id="custdown:printedDateFontSize" label="Printed Date Font Size" set="dateWatermark"/>
+                    <field id="custdown:printedDatePosition" label="Printed Date Position" set="dateWatermark"/>
+                    <field id="custdown:printedDatePositionX" label="Printed Date Position Add Coord X" set="dateWatermark"/>
+                    <field id="custdown:printedDatePositionY" label="Printed Date Position Add Coord Y" set="dateWatermark"/>
+                </appearance>
+            </form>
+        </forms>
+    </config>
+
+    <!-- ASPECT - Custom Download Skip Page -->
+    <config evaluator="aspect" condition="custdown:showCustomDownloadBtnSkipPage">
+        <forms>
+            <form>
+                <field-visibility>
+                    <show id="custdown:skipUntilPage" />
+                </field-visibility>
+                <appearance>
+                    <set id="skipPage" appearance="bordered-panel" label="Skip Page"/>
+                
+                    <field id="custdown:skipUntilPage" label="Until Page" set="skipPage"/>
+                </appearance>
+            </form>
+        </forms>
+    </config>
+
+</alfresco-config>
