@@ -12,7 +12,7 @@ Any aspect (Custom Download Watermark or Custom Download Skip Page) applied, wil
 2. Copy tomcat folder to tomcat folder in Alfresco installation directory (make sure no existing customization is being overwritten).
 3. Upload "Data Dictionary\Watermark\uncontrolled-when-printed-rotate.png" to Alfresco Repository "Data Dictionary\Watermark" as default watermark image.
 
-## Application
+## How to use
 
 ### Download with Watermark
 1. Add aspect Custom Download Watermark to any folder in Repository.
