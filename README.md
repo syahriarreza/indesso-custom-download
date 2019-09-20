@@ -1,6 +1,6 @@
 # Indesso Custom Download
-This will hide Download button above Document Actions in Document Details page and disable Download button in pdf viewer.
-Any aspect (Custom Download Watermark or Custom Download Skip Page) applied, will hide built-in download button in Document Actions and show customized download button instead. (the button appearance is same with the built-in one, but the function differs)
+#### This will hide Download button above Document Actions in Document Details page and disable Download button in pdf viewer.
+#### Any aspect (Custom Download Watermark or Custom Download Skip Page) applied, will hide built-in download button in Document Actions and show customized download button instead. (the button appearance is same with the built-in one, but the function differs)
 
 ## Before Installation
 1. Make sure backups any customization done in Alfresco.
