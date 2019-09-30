@@ -35,7 +35,7 @@ function getModPDF(file) {
     } else { logger.warn("NOT FOUND: " + params["custdown:imagePath"]); }
 
     watermarkText(
-        newTempFileN, [1],
+        newTempFileN, ["all"],
         "Printed at: " + convertDateToString(new Date(), true),
         params["custdown:printedDateFontSize"], params["custdown:printedDatePosition"],
         params["custdown:printedDatePositionX"], params["custdown:printedDatePositionY"]
